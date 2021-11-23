@@ -1,0 +1,15 @@
+management.endpoints.web.exposure.include: '*'
+management.endpoint.health.show-details: always
+management.health.circuitbreakers.enabled: true
+server:
+  tomcat:
+    max-threads: ${PRODUCT_MAX_THREADS}
+  port: ${PRODUCT_PORT}
+rating:
+  service:
+    url: http://${RATING_HOST}:8081/v1/ratings
+resilience4j.bulkhead:
+  instances:
+    ratingService:
+      maxConcurrentCalls: ${PRODUCT_MAX_CONCURRENT_CALLS}
+      maxWaitDuration: ${PRODUCT_MAX_WAIT_DURATION_MILLISECONDS}ms

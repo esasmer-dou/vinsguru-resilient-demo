@@ -1,0 +1,2 @@
+server:
+  port: ${RATING_PORT}
